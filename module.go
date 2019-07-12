@@ -11,14 +11,14 @@ type Module struct {
 	rtm *RTMReceiver
 }
 
-func GetModule(name string) *Module {
+func NewOrGetModule(name string) *Module {
 	if m, ok := modules[name]; ok {
 		return m
 	}
 
 	m := &Module{
 		name: name,
-		rtm: newRTMReceiver(),
+		rtm:  newRTMReceiver(),
 	}
 	modules[name] = m
 

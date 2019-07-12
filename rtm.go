@@ -13,13 +13,22 @@ type RTMReceiver struct {
 	events chan interface{}
 
 	recvMessage []rtmReceiveMessage
-	recvOther []rtmReceiveOther
+	recvOther   []rtmReceiveOther
 }
 
 func newRTMReceiver() *RTMReceiver {
 	return &RTMReceiver{
 		events: make(chan interface{}),
 	}
+}
+
+func (r *RTMReceiver) Capacity(size int) *RTMReceiver {
+	if size < 0 {
+		size = 0
+	}
+	r.events = make(chan interface{}, size)
+
+	return r
 }
 
 func (r *RTMReceiver) run(api *slack.Client) {

@@ -7,12 +7,12 @@ import (
 )
 
 type Bot struct {
-	Token string
-	Debug bool
+	Token  string
+	Debug  bool
 	Logger *log.Logger
 }
 
-func NewBot() *Bot {
+func New() *Bot {
 	return &Bot{}
 }
 
